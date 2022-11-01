@@ -1,0 +1,21 @@
+*{color:#000}
+
+#navbarNav{
+    display:flex;
+    justify-content: space-between;
+}
+
+
+main{
+    padding: 1vh 2vh;
+}
+
+#header-moviment{
+    display:flex;
+}
+
+#form-moviment{
+    width:60%;
+    margin:0 auto;
+}
+
