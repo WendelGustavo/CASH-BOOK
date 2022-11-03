@@ -12,33 +12,41 @@
         doc.setFontSize(14)
         doc.text(85, 10, "Relatorio")
         doc.setFontSize(11)
+        doc.setTextColor(50,50,50)
         doc.text(10, 30, "Id")
-        doc.text(22, 30, "Data")
-        doc.text(75, 30, "Descrição")
-        doc.text(157, 30, "Valor")
-        doc.text(185, 30, "Tipo")
+        doc.text(22, 30, "Descrição")
+        doc.text(99, 30, "Valor")
+        doc.text(140, 30, "Tipo")
+        doc.text(170, 30, "Data")
+        doc.text(10, 40, "----------------------------------------------------------------------------------------------------------------------------------------------------")
         <?php
         $data = $this->data;
-        $numero = 40;
-        foreach ($data['moviments'] as $moviment) {
-            echo 'doc.text(10, ' . $numero . ', "' . $moviment['id'] . '")
+        $cont =50;
+        foreach ($data['moviments'] as $movimentos) {
+            echo 'doc.text(10, ' . $cont . ', "' . $movimentos['id'] . '")
             ';
-            echo 'doc.text(22, ' . $numero . ', "' . $moviment['date'] . '")
+            echo 'doc.text(22, ' . $cont . ', "' . $movimentos['description'] . '")
             ';
-            echo 'doc.text(75, ' . $numero . ', "' . $moviment['description'] . '")
+            echo 'doc.text(99, ' . $cont . ', "R$ ' . $movimentos['value'] . '")
             ';
-            echo 'doc.text(157, ' . $numero . ', "R$ ' . $moviment['value'] . '")
+            echo 'doc.text(140, ' . $cont . ', "' . $movimentos['type'] . '")
             ';
-            echo 'doc.text(185, ' . $numero . ', "' . $moviment['type'] . '")
+            echo 'doc.text(170, ' . $cont . ', "' . $movimentos['date'] . '")
             ';
-            $numero += 7;
+            $cont =$cont+ 10;
         }
-        echo 'doc.text(10, 135, "O saldo atual é de: R$ ' . $data['cash_balance'] . '")
+        if($data['cash_balance']>0){
+            echo 'doc.setTextColor(0,255,0)
+            ';
+        }else{
+            echo 'doc.setTextColor(255,0,0)
+            ';
+        }
+        echo 'doc.text(10, 20, "O saldo atual é de: R$ ' . $data['cash_balance'] . '")
         ';
+
         ?>
         doc.save('Relatorio.pdf');
-
-
     }
 </script>
     <style>
@@ -51,9 +59,20 @@
         #legal2{
 
         }
+        #titulo{
+            color: #909090;
+            font-size: 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
     </style>
 
     <form method="post" action="<?= base_url('moviments/filtrar') ?>">
+
+    <div class="container">
+    <div class="row">
+    <div class="col-12 text-center">
+    <h1 id="titulo" >Tabela de controle de movimentos</h1>
         <div id="header-moviment">
             <div class="input-group">
                 <label class="input-group-text" for="inputGroupSelect01">Ano</label>
@@ -99,6 +118,10 @@
         <div class="col-12 text-center mt-3">
         <button class="btn btn-dark mt-3 p-3 " id="legal"> Fazer Filtragem </button>
         </div>
+    </div>
+    </div>
+    </div>
+
     </form>
     <div class="container">
     <div class="row">

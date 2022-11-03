@@ -6,10 +6,6 @@ use CodeIgniter\Model;
 
 class MovimentsModel extends Model
 {
-    protected $table            = 'moviment';
-    protected $returnType       = 'array';
-
-
     public function listMovi()
     {
         $db = db_connect();
