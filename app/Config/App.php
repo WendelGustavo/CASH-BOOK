@@ -24,7 +24,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'cashbookrelatorios.herokuapp.com';
+    public $baseURL = 'https://cashbookrelatorios.herokuapp.com';
 
     /**
      * --------------------------------------------------------------------------
